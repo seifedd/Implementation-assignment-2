@@ -18,6 +18,8 @@ class Perceptron:
         X,Y=obj1.open_csv()
         w=np.zeros(X.shape[1])
         wb=np.zeros(X.shape[1])
+
+
         c=0
         s=0
         iter=0
@@ -37,10 +39,12 @@ class Perceptron:
                     w=w+np.dot(Y[i],X_i)
 
 
+
             for i,X_i in enumerate(X):
-                ut = np.sign(np.dot(np.transpose(w), X_i))
-                if Y[i] * ut >0:
-                    acc1_c = acc1_c + 1
+                ut=np.sign(np.dot(np.transpose(w),X_i))
+                if Y[i]*ut > 0:
+                    acc1_c=acc1_c+1
+
 
             acc1.append(acc1_c)
 
@@ -52,16 +56,12 @@ class Perceptron:
             acc2.append(acc2_c)
             iter=iter+1
 
-            #CSV file prediction
-            Y3_hat = np.sign(np.dot(X3,np.transpose(w)))
-            print("predicted Y3:\n",Y3_hat)
+        #for test
+        Y3_hat = np.sign(np.dot(X3,np.transpose(w)))
 
-
-
-
-
-
-
+        Y3_hat_array = np.array(Y3_hat)
+        #a = numpy.asarray([ [1,2,3], [4,5,6], [7,8,9] ])
+        np.savetxt("oplabel.csv", Y3_hat_array, delimiter=",")
 
         print("Accuracy:\n","Training acc:")
         print(np.divide(acc1,Y.shape[0]))
@@ -70,11 +70,16 @@ class Perceptron:
 
         #PLOT
 
-        plt.plot(np.divide(acc1,Y.shape[0]), label="iters=" + str(iters) + "-train")
-        plt.plot(np.divide(acc2,Y2.shape[0]), label="iters=" + str(iters) + "-valid")
-        plt.title(" train and validation accuracies versus the iteration number ")
-        plt.xlabel("iterations")
-        plt.ylabel("Acc")
+        plt.plot(np.divide(acc1,Y.shape[0]), label="Training Accuracy ")
+
+
+        plt.legend()
+        plt.plot(np.divide(acc2,Y2.shape[0]), label="Validation Accuracy")
+
+        plt.legend()
+        plt.title(" Training and Validation Accuracies VS  Iteration Number ")
+        plt.xlabel("Number of Iterations")
+        plt.ylabel("Accuracy")
         plt.show()
 
 

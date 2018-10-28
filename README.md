@@ -10,10 +10,12 @@ To activate the virtual Vpy34:
     (Vpy34) root:~# python -V
     Python 3.4.4
   ------------------------------------------------------------------------------
-  P1. 
+ To run:
 
-  P2. To run:(need matplotlib.pyplot) 
-      python part2.py 15
+  P1. python part1.py 15
+
+  P2. python part2.py 15
+      
 
   P3.
 
